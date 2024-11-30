@@ -24,7 +24,7 @@ public class Disciplina {
         this.aluno = aluno;
     }
 
-    public int getCodigoDisciplina() {
+    public long getCodigoDisciplina() {
         return codigoDisciplina;
     }
 
