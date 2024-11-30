@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gerenciador de Clientes</title>
+</head>
+<body>
+<h1>Meus Clientes</h1>
+<a href="/add">Adicionar Cliente</a>
+<ul>
+    <li th:each="cliente : ${clientes}">
+        <span th:text="${cliente.codigo}">Código</span>
+        <span th:text="${cliente.nome}">Nome</span>
+        <span th:text="${cliente.endereco}">Endereço</span>
+    </li>
+</ul>
+</body>
+</html>
