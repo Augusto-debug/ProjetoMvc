@@ -13,6 +13,11 @@ public class Disciplina {
         this.professor = professor;
     }
 
+    public Disciplina(int codigoDisciplina, String nome) {
+        this.codigoDisciplina = codigoDisciplina;
+        this.nome = nome;
+    }
+
     public Disciplina() {
     }
 

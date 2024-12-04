@@ -15,6 +15,11 @@ public class Professor {
     public Professor() {
     }
 
+    public Professor(int codigoProfessor, String nome, String email) {
+        this.codigoProfessor = codigoProfessor;
+        this.nome = nome;
+        this.email = email;
+    }
     public int getCodigoProfessor() {
         return codigoProfessor;
     }

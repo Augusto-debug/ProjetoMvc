@@ -5,35 +5,55 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class DisciplinaRepository {
 
-    private final List<Disciplina> disciplinas = new ArrayList<>();
+    private final List<Disciplina> disciplinas;
 
-    public List<Disciplina> findAll() {
-        return new ArrayList<>(disciplinas);
+    public DisciplinaRepository() {
+        this.disciplinas = new ArrayList<>();
+        disciplinas.add(new Disciplina(1, "Matemática"));
+        disciplinas.add(new Disciplina(2, "Português"));
     }
 
-    public Optional<Disciplina> findById(Long codigoDisciplina) {
-        return disciplinas.stream()
-                .filter(disciplina -> disciplina.getCodigoDisciplina() == codigoDisciplina)
-                .findFirst();
+    public List<Disciplina> listar() {
+        return this.disciplinas;
     }
 
-    public Disciplina save(Disciplina disciplina) {
-        Optional<Disciplina> existingDisciplina = findById(disciplina.getCodigoDisciplina());
-        if (existingDisciplina.isPresent()) {
-            int index = disciplinas.indexOf(existingDisciplina.get());
-            disciplinas.set(index, disciplina);
-        } else {
-            disciplinas.add(disciplina);
+    public List<Disciplina> buscaPorNome(String nome) {
+        List<Disciplina> disciplinasBusca = new ArrayList<>();
+        for (Disciplina disciplina : this.disciplinas) {
+            if (disciplina.getNome().toLowerCase().contains(nome.toLowerCase())) {
+                disciplinasBusca.add(disciplina);
+            }
         }
-        return disciplina;
+        return disciplinasBusca;
     }
 
-    public void deleteById(Long codigoDisciplina) {
-        disciplinas.removeIf(disciplina -> disciplina.getCodigoDisciplina() == codigoDisciplina);
+    public Disciplina buscaPorCodigo(int codigoDisciplina) {
+        for (Disciplina disciplina : this.disciplinas) {
+            if (disciplina.getCodigoDisciplina() == codigoDisciplina) {
+                return disciplina;
+            }
+        }
+        return null;
+    }
+
+    public void novo(Disciplina disciplina) {
+        disciplinas.add(disciplina);
+    }
+
+    public boolean delete(int codigoDisciplina) {
+        return disciplinas.removeIf(disciplina -> disciplina.getCodigoDisciplina() == codigoDisciplina);
+    }
+
+    public boolean update(Disciplina disciplina) {
+        int index = disciplinas.indexOf(disciplina);
+        if (index != -1) {
+            disciplinas.set(index, disciplina);
+            return true;
+        }
+        return false;
     }
 }

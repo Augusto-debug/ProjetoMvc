@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Disciplinas</title>
+</head>
+<body>
+<h1>Lista de Disciplinas</h1>
+<a th:href="@{/disciplina/novo}">Nova Disciplina</a>
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Aluno</th>
+        <th>Professor</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="disciplina : ${disciplinas}">
+        <td th:text="${disciplina.getNome()}">Nome</td>
+        <td th:text="${disciplina.getAluno()}">Aluno</td>
+        <td th:text="${disciplina.getProfessor()}">Professor</td>
+        <td>
+            <a th:href="@{/disciplina/editar/{codigo}(codigo=${disciplina.codigoDisciplina})}">Editar</a>
+            <form th:action="@{/disciplina/excluir/{codigo}(codigo=${disciplina.codigoDisciplina})}" method="post" style="display:inline;">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

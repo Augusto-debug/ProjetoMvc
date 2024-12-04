@@ -5,35 +5,55 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class ProfessorRepository {
 
-    private final List<Professor> professores = new ArrayList<>();
+    private final List<Professor> professores;
 
-    public List<Professor> findAll() {
-        return new ArrayList<>(professores);
+    public ProfessorRepository() {
+        this.professores = new ArrayList<>();
+        professores.add(new Professor(1, "João", "professor1@gmail.com"));
+        professores.add(new Professor(2, "Maria", "professor2@gmail.com"));
     }
 
-    public Optional<Professor> findById(int codigoProfessor) {
-        return professores.stream()
-                .filter(professor -> professor.getCodigoProfessor() == codigoProfessor)
-                .findFirst();
+    public List<Professor> listar() {
+        return this.professores;
     }
 
-    public Professor save(Professor professor) {
-        Optional<Professor> existingProfessor = findById(professor.getCodigoProfessor());
-        if (existingProfessor.isPresent()) {
-            int index = professores.indexOf(existingProfessor.get());
-            professores.set(index, professor);
-        } else {
-            professores.add(professor);
+    public List<Professor> buscaPorNome(String nome) {
+        List<Professor> professoresBusca = new ArrayList<>();
+        for (Professor professor : this.professores) {
+            if (professor.getNome().toLowerCase().contains(nome.toLowerCase())) {
+                professoresBusca.add(professor);
+            }
         }
-        return professor;
+        return professoresBusca;
     }
 
-    public void deleteById(int codigoProfessor) {
-        professores.removeIf(professor -> professor.getCodigoProfessor() == codigoProfessor);
+    public Professor buscaPorCodigo(int codigoProfessor) {
+        for (Professor professor : this.professores) {
+            if (professor.getCodigoProfessor() == codigoProfessor) {
+                return professor;
+            }
+        }
+        return null;
+    }
+
+    public void novo(Professor professor) {
+        professores.add(professor);
+    }
+
+    public boolean delete(int codigoProfessor) {
+        return professores.removeIf(professor -> professor.getCodigoProfessor() == codigoProfessor);
+    }
+
+    public boolean update(Professor professor) {
+        int index = professores.indexOf(professor);
+        if (index != -1) {
+            professores.set(index, professor);
+            return true;
+        }
+        return false;
     }
 }
