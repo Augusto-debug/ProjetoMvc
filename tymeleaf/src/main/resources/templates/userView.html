@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+<p th:text="${nomeUsuario}"> Nome do Usuário: </p>
+<p th:unless="${usuario.isAdministrador()}"> Este é um conteúdo exclusivo para administradores. </p>
+<h1>Lista de Usuários</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Login</th>
+        <th>Administrador</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="usuario : ${usuarios}">
+        <td th:text="${usuario.nome}"></td>
+        <td th:text="${usuario.login}"></td>
+        <td th:text="${usuario.administrador ? 'Sim' : 'Não'}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

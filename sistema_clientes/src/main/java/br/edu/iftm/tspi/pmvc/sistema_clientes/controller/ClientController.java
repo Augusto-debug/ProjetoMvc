@@ -1,6 +1,7 @@
-package controller;
+package br.edu.iftm.tspi.pmvc.sistema_clientes.controller;
 
-import domain.Cliente;
+import br.edu.iftm.tspi.pmvc.sistema_clientes.domain.Cliente;
+import br.edu.iftm.tspi.pmvc.sistema_clientes.domain.Cliente;
 import br.edu.iftm.tspi.pmvc.sistema_clientes.repository.ClienteRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

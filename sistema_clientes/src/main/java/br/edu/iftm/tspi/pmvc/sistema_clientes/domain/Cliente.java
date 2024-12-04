@@ -1,4 +1,4 @@
-package domain;
+package br.edu.iftm.tspi.pmvc.sistema_clientes.domain;
 
 public class Cliente {
     private Integer codigo;
