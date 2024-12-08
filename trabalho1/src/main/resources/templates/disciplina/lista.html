@@ -17,9 +17,9 @@
     </thead>
     <tbody>
     <tr th:each="disciplina : ${disciplinas}">
-        <td th:text="${disciplina.getNome()}">Nome</td>
-        <td th:text="${disciplina.getAluno()}">Aluno</td>
-        <td th:text="${disciplina.getProfessor()}">Professor</td>
+        <td th:text="${disciplina.nome}">Nome</td>
+        <td th:text="${disciplina.aluno != null ? disciplina.aluno.nome : 'N/A'}">Aluno</td>
+        <td th:text="${disciplina.professor != null ? disciplina.professor.nome : 'N/A'}">Professor</td>
         <td>
             <a th:href="@{/disciplina/editar/{codigo}(codigo=${disciplina.codigoDisciplina})}">Editar</a>
             <form th:action="@{/disciplina/excluir/{codigo}(codigo=${disciplina.codigoDisciplina})}" method="post" style="display:inline;">

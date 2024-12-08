@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Disciplina Form</title>
+    <title>Formulário de Disciplina</title>
 </head>
 <body>
-<h1>Disciplina Form</h1>
+<h1>Formulário de Disciplina</h1>
 <form th:action="@{/disciplina/novo}" th:object="${disciplina}" method="post">
-    <input type="hidden" th:field="*{codigoDisciplina}" />
     <label for="nome">Nome:</label>
     <input type="text" id="nome" th:field="*{nome}" /><br/>
-    <label for="aluno">Aluno:</label>
-    <input type="text" id="aluno" th:field="*{aluno.nome}" /><br/>
-    <label for="professor">Professor:</label>
-    <input type="text" id="professor" th:field="*{professor.nome}" /><br/>
+
+    <label for="alunoNome">Nome do Aluno:</label>
+    <input type="text" id="alunoNome" th:field="*{aluno.nome}" /><br/>
+
+    <label for="professorNome">Nome do Professor:</label>
+    <input type="text" id="professorNome" th:field="*{professor.nome}" /><br/>
+
     <button type="submit">Salvar</button>
 </form>
-<a th:href="@{/disciplina}">Voltar</a>
 </body>
 </html>

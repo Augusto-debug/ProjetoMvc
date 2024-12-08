@@ -1,15 +1,18 @@
 package br.edu.iftm.tspi.pmvc.trabalho1.domain;
 
+import java.util.List;
+import java.util.Objects;
+
 public class Disciplina {
     private int codigoDisciplina;
     private String nome;
-    private Aluno aluno;
+    private Aluno alunos;
     private Professor professor;
 
-    public Disciplina(int codigoDisciplina, String nome, Aluno aluno, Professor professor) {
+    public Disciplina(int codigoDisciplina, String nome, Aluno alunos, Professor professor) {
         this.codigoDisciplina = codigoDisciplina;
         this.nome = nome;
-        this.aluno = aluno;
+        this.alunos = alunos;
         this.professor = professor;
     }
 
@@ -22,14 +25,14 @@ public class Disciplina {
     }
 
     public Aluno getAluno() {
-        return aluno;
+        return alunos;
     }
 
     public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+        this.alunos = aluno;
     }
 
-    public long getCodigoDisciplina() {
+    public int getCodigoDisciplina() {
         return codigoDisciplina;
     }
 
@@ -51,5 +54,17 @@ public class Disciplina {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Disciplina that = (Disciplina) o;
+        return codigoDisciplina == that.codigoDisciplina;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigoDisciplina);
     }
 }

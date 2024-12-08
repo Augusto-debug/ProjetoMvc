@@ -1,5 +1,7 @@
 package br.edu.iftm.tspi.pmvc.trabalho1.domain;
 
+import java.util.Objects;
+
 public class Aluno {
     private int codigoAluno;
     private String nome;
